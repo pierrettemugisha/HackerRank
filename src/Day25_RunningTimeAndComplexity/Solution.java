@@ -11,22 +11,14 @@ public class Solution {
         int numberTestCases = scanner.nextInt();
         for (int i = 0; i < numberTestCases; i++) {
             int testCase = scanner.nextInt();
-            System.out.println(isPrime(testCase));
+            System.out.println(((testCase >= 2) && isPrime(testCase)) ? "Prime" : "Not prime");
         }
     }
 
-    private static String isPrime(int n) {
-        if (n == 1) {
-            return "Not prime";
-        }
-        if (n == 2) {
-            return "Prime";
-        }
-        for (int j = 2; j * j < n; j++) {
-            if (n % j == 0 && j != n) {
-                return "Not prime";
-            }
-        }
-        return "Prime";
+    private static boolean isPrime(int n) {
+        for (int j = 2; j <= Math.sqrt(n); j++)
+            if (n % j == 0)
+                return false;
+        return true;
     }
 }
