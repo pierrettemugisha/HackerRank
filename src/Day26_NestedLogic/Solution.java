@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class Solution {
     private static final int AFTER_EXPECTED_DAY = 15,
-            AFTER_EXPECTED_MONTH =500,
+            AFTER_EXPECTED_MONTH = 500,
             AFTER_EXPECTED_YEAR = 10000;
     private static int FINE;
 
@@ -21,18 +21,14 @@ public class Solution {
                 expectedMonth = scanner.nextInt(),
                 expectedYear = scanner.nextInt();
 
-        if (expectedYear == actualYear)
-            if (actualMonth <= expectedMonth)
-                if (actualDay <= expectedDay)
-                    FINE = 0;
-                else
-                    FINE = ((actualDay - expectedDay) * AFTER_EXPECTED_DAY);
-            else
-                FINE = ((actualMonth - expectedMonth) * AFTER_EXPECTED_MONTH);
-        else if (expectedYear<actualYear)
-            FINE = 0;
-        else
-            FINE = (AFTER_EXPECTED_YEAR);
+        if (actualYear > expectedYear)
+            FINE = AFTER_EXPECTED_YEAR;
+        else if (actualYear == expectedYear) {
+            if (actualMonth > expectedMonth)
+                FINE = (actualMonth - expectedMonth) * AFTER_EXPECTED_MONTH;
+            else if (actualMonth == expectedMonth && actualDay > expectedDay)
+                FINE = (actualDay - expectedDay) * AFTER_EXPECTED_DAY;
+        }
         System.out.println(FINE);
     }
 }
